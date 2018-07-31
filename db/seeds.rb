@@ -80,7 +80,7 @@ Person.create([
   },
   {
     first_name: "Mitchell",
-    last_name: "Pritchett",
+    last_name: "Tucker-Pritchett",
     dob: Date.parse("1973-1-4"),
     deceased: false, gender: "male",
     place_of_birth: "Los Angeles, California",
@@ -88,7 +88,7 @@ Person.create([
   },
   {
     first_name: "Cameron",
-    last_name: "Tucker",
+    last_name: "Tucker-Pritchett",
     dob: Date.parse("1972-2-29"),
     deceased: false, gender: "female",
     place_of_birth: "St. Louis, Missouri",
@@ -157,14 +157,14 @@ Relationship.create([
   ])
 
   Partnership.create([
-    { person_id: Person.find_by(first_name: "Jay"), partner_id: Person.find_by(first_name: "Dede"), status: "divorced"},
-    { person_id: Person.find_by(first_name: "Jay"), partner_id: Person.find_by(first_name: "Gloria"), status: "married"},
-    { person_id: Person.find_by(first_name: "Dede"), partner_id: Person.find_by(first_name: "Jay"), status: "divorced"},
-    { person_id: Person.find_by(first_name: "Gloria"), partner_id: Person.find_by(first_name: "Javier"), status: "divorced"},
-    { person_id: Person.find_by(first_name: "Gloria"), partner_id: Person.find_by(first_name: "Jay"), status: "married"},
-    { person_id: Person.find_by(first_name: "Javier"), partner_id: Person.find_by(first_name: "Gloria"), status: "divorced"},
-    { person_id: Person.find_by(first_name: "Claire"), partner_id: Person.find_by(first_name: "Phil"), status: "married"},
-    { person_id: Person.find_by(first_name: "Phil"), partner_id: Person.find_by(first_name: "Claire"), status: "married"},
-    { person_id: Person.find_by(first_name: "Mitchell"), partner_id: Person.find_by(first_name: "Cameron"), status: "married"},
-    { person_id: Person.find_by(first_name: "Cameron"), partner_id: Person.find_by(first_name: "Mitchell"), status: "married"}
+    { person: Person.find_by(first_name: "Jay"), partner: Person.find_by(first_name: "Dede"), status: "divorced"},
+    { person: Person.find_by(first_name: "Jay"), partner: Person.find_by(first_name: "Gloria"), status: "married"},
+    { person: Person.find_by(first_name: "Dede"), partner: Person.find_by(first_name: "Jay"), status: "divorced"},
+    { person: Person.find_by(first_name: "Gloria"), partner: Person.find_by(first_name: "Javier"), status: "divorced"},
+    { person: Person.find_by(first_name: "Gloria"), partner: Person.find_by(first_name: "Jay"), status: "married"},
+    { person: Person.find_by(first_name: "Javier"), partner: Person.find_by(first_name: "Gloria"), status: "divorced"},
+    { person: Person.find_by(first_name: "Claire"), partner: Person.find_by(first_name: "Phil"), status: "married"},
+    { person: Person.find_by(first_name: "Phil"), partner: Person.find_by(first_name: "Claire"), status: "married"},
+    { person: Person.find_by(first_name: "Mitchell"), partner: Person.find_by(first_name: "Cameron"), status: "married"},
+    { person: Person.find_by(first_name: "Cameron"), partner: Person.find_by(first_name: "Mitchell"), status: "married"}
   ])
