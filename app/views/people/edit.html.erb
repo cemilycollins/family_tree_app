@@ -1,0 +1,19 @@
+<h1>Edit Form</h1>
+
+<%= form_for @person do |f| %>
+  <%= f.label :first_name %><br>
+  <%= f.text_field :first_name %><br>
+  <%= f.label :last_name %><br>
+  <%= f.text_field :last_name %><br>
+  <%= f.label :dob, "Date of birth - format: 'YYYY-MM-DD'" %><br>
+  <%= f.text_field :dob %><br>
+  <%= f.label :deceased, "Deceased?" %><br>
+  <%= f.check_box :deceased %><br>
+  <%= f.label :dod, "Date deceased (optional)  - format: 'YYYY-MM-DD'" %><br>
+  <%= f.text_field :dod %><br>
+  <%= f.label :place_of_birth %><br>
+  <%= f.text_field :place_of_birth %><br>
+  <%= f.label :current_location %><br>
+  <%= f.text_field :current_location %><br>
+  <%= f.submit %>
+<% end %>

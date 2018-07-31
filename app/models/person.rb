@@ -9,4 +9,17 @@ class Person < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def siblings
+    sibs_array = []
+    self.parents.each do |parent|
+      parent.children.each do |child|
+        if !sibs_array.include?(child)
+          sibs_array << child
+        end
+      end
+    end
+    sibs_array.delete(self)
+    sibs_array
+  end
+
 end
