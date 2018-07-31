@@ -1,7 +1,7 @@
 <h1><%= @person.to_s %></h1>
 
 <p>Birthday: <%= @person.dob %></p>
-<%= if @person.deceased %>
+<% if @person.deceased %>
 <p>Died: <%= @person.dod %></p>
 <% end %>
 <p>Place Of Birth: <%= @person.place_of_birth %></p>
