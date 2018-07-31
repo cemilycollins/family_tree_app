@@ -7,3 +7,23 @@
 <p>Place Of Birth: <%= @person.place_of_birth %></p>
 <p>Current Location: <%= @person.current_location %></p>
 <p>Gender: <%= @person.gender %></p>
+
+
+
+<% if !@person.children.empty? %>
+  <h2><%= @person.first_name %>'s Children: </h2>
+    <ul>
+    <% @person.children.each do |child| %>
+      <li><%= link_to child.to_s, person_path(child) %></li>
+    <% end %>
+    </ul>
+<% end %>
+
+<% if !@person.parents.empty? %>
+  <h2><%= @person.first_name %>'s Parents: </h2>
+    <ul>
+    <% @person.parents.each do |parent| %>
+      <li><%= link_to parent.to_s, person_path(parent) %></li>
+    <% end %>
+    </ul>
+<% end %>
