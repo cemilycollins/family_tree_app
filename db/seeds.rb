@@ -1,3 +1,6 @@
+Person.destroy_all
+Relationship.destroy_all
+Partnership.destroy_all
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -98,6 +101,38 @@ Person.create([
     deceased: false, gender: "female",
     place_of_birth: "Hanoi, Vietnam",
     current_location: "Los Angeles, California"
+  },
+  {
+    first_name: "Gloria",
+    last_name: "Delgado-Pritchett",
+    dob: Date.parse("1971-5-10"),
+    deceased: false, gender: "female",
+    place_of_birth: "Barranquilla, Colombia",
+    current_location: "Los Angeles, California"
+  },
+  {
+    first_name: "Javier",
+    last_name: "Delgado",
+    dob: Date.parse("1971-2-18"),
+    deceased: false, gender: "male",
+    place_of_birth: "Barranquilla, Colombia",
+    current_location: "Barranquilla, Colombia"
+  },
+  {
+    first_name: "Manny",
+    last_name: "Delgado",
+    dob: Date.parse("1999-1-4"),
+    deceased: false, gender: "male",
+    place_of_birth: "Barranquilla, Colombia",
+    current_location: "Los Angeles, California"
+  },
+  {
+    first_name: "Joe",
+    last_name: "Pritchett",
+    dob: Date.parse("2013-1-29"),
+    deceased: false, gender: "male",
+    place_of_birth: "Los Angeles, California",
+    current_location: "Los Angeles, California"
   }
 ])
 
@@ -113,5 +148,23 @@ Relationship.create([
   { child: Person.find_by(first_name: "Alex"), parent: Person.find_by(first_name: "Phil")},
   { child: Person.find_by(first_name: "Luke"), parent: Person.find_by(first_name: "Phil")},
   { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Mitchell")},
-  { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Cameron")}
+  { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Cameron")},
+  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Gloria")},
+  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Javier")},
+  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Jay")},
+  { child: Person.find_by(first_name: "Joe"), parent: Person.find_by(first_name: "Gloria")},
+  { child: Person.find_by(first_name: "Joe"), parent: Person.find_by(first_name: "Jay")}
+  ])
+
+  Partnership.create([
+    { person_id: Person.find_by(first_name: "Jay"), partner_id: Person.find_by(first_name: "Dede"), status: "divorced"},
+    { person_id: Person.find_by(first_name: "Jay"), partner_id: Person.find_by(first_name: "Gloria"), status: "married"},
+    { person_id: Person.find_by(first_name: "Dede"), partner_id: Person.find_by(first_name: "Jay"), status: "divorced"},
+    { person_id: Person.find_by(first_name: "Gloria"), partner_id: Person.find_by(first_name: "Javier"), status: "divorced"},
+    { person_id: Person.find_by(first_name: "Gloria"), partner_id: Person.find_by(first_name: "Jay"), status: "married"},
+    { person_id: Person.find_by(first_name: "Javier"), partner_id: Person.find_by(first_name: "Gloria"), status: "divorced"},
+    { person_id: Person.find_by(first_name: "Claire"), partner_id: Person.find_by(first_name: "Phil"), status: "married"},
+    { person_id: Person.find_by(first_name: "Phil"), partner_id: Person.find_by(first_name: "Claire"), status: "married"},
+    { person_id: Person.find_by(first_name: "Mitchell"), partner_id: Person.find_by(first_name: "Cameron"), status: "married"},
+    { person_id: Person.find_by(first_name: "Cameron"), partner_id: Person.find_by(first_name: "Mitchell"), status: "married"}
   ])
