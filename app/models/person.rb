@@ -5,4 +5,8 @@ class Person < ApplicationRecord
   has_many :children, through: :child_relationships
   has_many :ethnicities
 
+  def to_s
+    self.first_name + " " + self.last_name
+  end
+
 end
