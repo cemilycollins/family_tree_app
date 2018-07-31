@@ -27,3 +27,16 @@
     <% end %>
     </ul>
 <% end %>
+
+<% if !@person.siblings.empty? %>
+  <h2><%= @person.first_name %>'s Siblings: </h2>
+    <ul>
+    <% @person.siblings.each do |sibling| %>
+      <li><%= link_to sibling.to_s, person_path(sibling) %></li>
+    <% end %>
+    </ul>
+<% end %>
+
+<%= form_tag edit_person_path(@person), method: "get" do %>
+<%= submit_tag "Edit This Person Record" %>
+<% end %>
