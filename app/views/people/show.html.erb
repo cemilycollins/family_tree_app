@@ -1,9 +1,29 @@
 <h1><%= @person.to_s %></h1>
 
 <p>Birthday: <%= @person.dob %></p>
-<%= if @person.deceased %>
+<% if @person.deceased %>
 <p>Died: <%= @person.dod %></p>
 <% end %>
 <p>Place Of Birth: <%= @person.place_of_birth %></p>
 <p>Current Location: <%= @person.current_location %></p>
 <p>Gender: <%= @person.gender %></p>
+
+
+
+<% if !@person.children.empty? %>
+  <h2><%= @person.first_name %>'s Children: </h2>
+    <ul>
+    <% @person.children.each do |child| %>
+      <li><%= link_to child.to_s, person_path(child) %></li>
+    <% end %>
+    </ul>
+<% end %>
+
+<% if !@person.parents.empty? %>
+  <h2><%= @person.first_name %>'s Parents: </h2>
+    <ul>
+    <% @person.parents.each do |parent| %>
+      <li><%= link_to parent.to_s, person_path(parent) %></li>
+    <% end %>
+    </ul>
+<% end %>
