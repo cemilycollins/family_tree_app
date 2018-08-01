@@ -157,9 +157,9 @@ Relationship.create([
   ])
 
   Partnership.create([
-    { person: Person.find_by(first_name: "Jay"), partner: Person.find_by(first_name: "Dede"), status: "divorced"},
+    { person: Person.find_by(first_name: "Jay"), partner: Person.find_by(first_name: "DeDe"), status: "divorced"},
     { person: Person.find_by(first_name: "Jay"), partner: Person.find_by(first_name: "Gloria"), status: "married"},
-    { person: Person.find_by(first_name: "Dede"), partner: Person.find_by(first_name: "Jay"), status: "divorced"},
+    { person: Person.find_by(first_name: "DeDe"), partner: Person.find_by(first_name: "Jay"), status: "divorced"},
     { person: Person.find_by(first_name: "Gloria"), partner: Person.find_by(first_name: "Javier"), status: "divorced"},
     { person: Person.find_by(first_name: "Gloria"), partner: Person.find_by(first_name: "Jay"), status: "married"},
     { person: Person.find_by(first_name: "Javier"), partner: Person.find_by(first_name: "Gloria"), status: "divorced"},
