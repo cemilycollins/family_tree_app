@@ -15,9 +15,9 @@ class FamiliesController < ApplicationController
 
   def create
     @family = Family.new(family_params)
-    @photo = @family.photos.build(params[:family][:photo])
-
     if @family.save
+      @photo = @family.photos.build(name: params[:family][:photo][:name], img_url: params[:family][:photo][:img_url])
+      @photo.save
       redirect_to family_path(@family)
     else
       render :new
