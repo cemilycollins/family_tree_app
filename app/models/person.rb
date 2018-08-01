@@ -3,9 +3,10 @@ class Person < ApplicationRecord
   has_many :child_relationships, class_name: "Relationship", foreign_key: "parent_id"
   has_many :parents, through: :parent_relationships
   has_many :children, through: :child_relationships
-  has_many :partnerships, class_name: "Partnership"
+  has_many :partnerships
   has_many :partners, through: :partnerships, foreign_key: "partner_id"
   has_many :ethnicities
+  belongs_to :family
 
   accepts_nested_attributes_for :parent_relationships
 

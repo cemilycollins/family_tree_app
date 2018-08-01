@@ -1,6 +1,6 @@
 <h1><%= @person.to_s %></h1>
 
-<p>Birthday: <%= @person.dob %></p>
+<p>Birthday: <%= @person.dob.strftime("%B %d, %Y") %></p>
 <% if @person.deceased %>
 <p>Died: <%= @person.dod %></p>
 <% end %>
@@ -8,6 +8,16 @@
 <p>Current Location: <%= @person.current_location %></p>
 <p>Gender: <%= @person.gender %></p>
 
+ <% if !@person.partners.empty? %>
+   <h2><%= @person.first_name %>'s Partners: </h2>
+     <ul>
+     <% @person.partners.each do |partner| %>
+      <li>
+       <%= link_to partner, person_path(partner) %> -
+      </li>
+     <% end %>
+     </ul>
+ <% end %>
 
 
 <% if !@person.children.empty? %>

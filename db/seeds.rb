@@ -1,6 +1,7 @@
 Person.destroy_all
 Relationship.destroy_all
 Partnership.destroy_all
+Family.destroy_all
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -21,6 +22,8 @@ Partnership.destroy_all
 # t.string :current_location
 #
 
+Family.create([name: "Modern Family"])
+
 Person.create([
   {
     first_name: "Jay",
@@ -28,7 +31,8 @@ Person.create([
     dob: Date.parse("1947-5-23"),
     deceased: false, gender: "male",
     place_of_birth: "Youngstown, Ohio",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "DeDe",
@@ -36,7 +40,8 @@ Person.create([
     dob: Date.parse("1947-1-23"),
     deceased: false, gender: "female",
     place_of_birth: "Sacramento, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Claire",
@@ -44,7 +49,8 @@ Person.create([
     dob: Date.parse("1970-3-3"),
     deceased: false, gender: "female",
     place_of_birth: "Los Angeles, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Phil",
@@ -52,7 +58,8 @@ Person.create([
     dob: Date.parse("1969-4-3"),
     deceased: false, gender: "male",
     place_of_birth: "Orlando, Florida",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Haley",
@@ -60,7 +67,8 @@ Person.create([
     dob: Date.parse("1993-12-10"),
     deceased: false, gender: "female",
     place_of_birth: "Los Angeles, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Alex",
@@ -68,7 +76,8 @@ Person.create([
     dob: Date.parse("1997-1-14"),
     deceased: false, gender: "female",
     place_of_birth: "Los Angeles, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Luke",
@@ -76,7 +85,8 @@ Person.create([
     dob: Date.parse("1998-11-28"),
     deceased: false, gender: "male",
     place_of_birth: "Los Angeles, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Mitchell",
@@ -84,15 +94,17 @@ Person.create([
     dob: Date.parse("1973-1-4"),
     deceased: false, gender: "male",
     place_of_birth: "Los Angeles, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Cameron",
     last_name: "Tucker-Pritchett",
     dob: Date.parse("1972-2-29"),
-    deceased: false, gender: "female",
+    deceased: false, gender: "male",
     place_of_birth: "St. Louis, Missouri",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Lily",
@@ -100,7 +112,8 @@ Person.create([
     dob: Date.parse("2008-2-19"),
     deceased: false, gender: "female",
     place_of_birth: "Hanoi, Vietnam",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Gloria",
@@ -108,7 +121,8 @@ Person.create([
     dob: Date.parse("1971-5-10"),
     deceased: false, gender: "female",
     place_of_birth: "Barranquilla, Colombia",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Javier",
@@ -116,7 +130,8 @@ Person.create([
     dob: Date.parse("1971-2-18"),
     deceased: false, gender: "male",
     place_of_birth: "Barranquilla, Colombia",
-    current_location: "Barranquilla, Colombia"
+    current_location: "Barranquilla, Colombia",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Manny",
@@ -124,7 +139,8 @@ Person.create([
     dob: Date.parse("1999-1-4"),
     deceased: false, gender: "male",
     place_of_birth: "Barranquilla, Colombia",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   },
   {
     first_name: "Joe",
@@ -132,7 +148,8 @@ Person.create([
     dob: Date.parse("2013-1-29"),
     deceased: false, gender: "male",
     place_of_birth: "Los Angeles, California",
-    current_location: "Los Angeles, California"
+    current_location: "Los Angeles, California",
+    family: Family.find_by(name: "Modern Family")
   }
 ])
 
