@@ -47,6 +47,16 @@
     </ul>
 <% end %>
 
+
+
+<h2>Want to edit this person?</h2>
+
 <%= form_tag edit_person_path(@person), method: "get" do %>
-<%= submit_tag "Edit This Person Record" %>
-<% end %>
+<%= submit_tag "Edit Personal Information" %>
+<% end %><br>
+
+<h3>Edit or add relationships:</h3>
+<p>Note: You can only add a partnership with an existing person record.</p>
+<p>If you'd like to create a new person, please go back to the <%= link_to "family page", family_people_path(@family).</p>
+
+<%= form_tag edit
