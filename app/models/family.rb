@@ -1,4 +1,4 @@
 class Family < ApplicationRecord
   has_many :people
-  has_one  :photo
+  has_many :photos
 end
