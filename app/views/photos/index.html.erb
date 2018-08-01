@@ -1,4 +1,9 @@
 <h1>Family Photos</h1>
+ <%= link_to '<button type="button">Add a Photo</button>'.html_safe, new_family_photo_path %><br>
+<br>
+<%= link_to '<button type="button">Return to Family Page</button>'.html_safe, family_path(@family) %>
+<br>
+<br>
 <% @photos.each do |photo| %>
-  <%= image_tag photo.img_url, :size => "725x450"%><br>
+  <%= link_to (image_tag photo.img_url, :size => "725x450"), family_photos_path(photo)%><br>
 <% end %>
