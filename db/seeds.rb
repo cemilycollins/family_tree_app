@@ -2,6 +2,7 @@ Person.destroy_all
 Relationship.destroy_all
 Partnership.destroy_all
 Family.destroy_all
+Photo.destroy_all
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -23,6 +24,15 @@ Family.destroy_all
 #
 
 Family.create([name: "Modern Family"])
+
+Photo.create([
+  {
+    name: "Modern Family Photo",
+    img_url: "https://www.tvovermind.com/wp-content/uploads/2017/12/modern-family-tile-deeb3bde.jpg",
+    family: Family.find_by(name: "Modern Family")
+  }
+])
+
 
 Person.create([
   {
