@@ -3,7 +3,7 @@ class Family < ApplicationRecord
   has_many :photos
 
   def family_portrait
-    self.photos.find {|photo| photo.photo_type = "family portrait"}
+    self.photos.find {|photo| photo.photo_type = "family portrait"}.img_url
   end
 
 end
