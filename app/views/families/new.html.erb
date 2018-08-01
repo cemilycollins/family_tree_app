@@ -1,0 +1,14 @@
+<h1>New Family</h1>
+
+<%= form_for @family do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name %><br>
+    <%= f.label "Photo Name:" %>
+  <%= f.fields_for @photo do |t| %>
+    <%= t.text_field :name %><br>
+    <%= f.label "Photo URL:" %>
+    <%= t.text_field :img_url %><br>
+  <% end %>
+  <br>
+  <%= f.submit "Create Family" %>
+<% end %>

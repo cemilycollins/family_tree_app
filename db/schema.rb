@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_08_01_193040) do
+=======
+ActiveRecord::Schema.define(version: 2018_08_01_173233) do
+>>>>>>> 251c1effdfb309e6f859032012573580c721b85a
 
   create_table "ethnicities", force: :cascade do |t|
     t.string "type"
@@ -52,6 +56,7 @@ ActiveRecord::Schema.define(version: 2018_08_01_193040) do
     t.string "name"
     t.string "img_url"
     t.integer "family_id"
+    t.string "photo_type"
   end
 
   create_table "relationships", force: :cascade do |t|

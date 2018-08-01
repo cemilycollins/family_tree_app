@@ -28,6 +28,7 @@ Family.create([name: "Modern Family"])
 Photo.create([
   {
     name: "Modern Family Photo",
+    photo_type: "family portrait",
     img_url: "https://www.tvovermind.com/wp-content/uploads/2017/12/modern-family-tile-deeb3bde.jpg",
     family: Family.find_by(name: "Modern Family")
   }
