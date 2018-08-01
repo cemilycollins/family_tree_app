@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2018_08_01_193040) do
+=======
 ActiveRecord::Schema.define(version: 2018_08_01_173233) do
+>>>>>>> 251c1effdfb309e6f859032012573580c721b85a
 
   create_table "ethnicities", force: :cascade do |t|
     t.string "type"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "percentage"
   end
 
   create_table "families", force: :cascade do |t|

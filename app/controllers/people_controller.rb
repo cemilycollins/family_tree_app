@@ -1,20 +1,20 @@
 class PeopleController < ApplicationController
   before_action :person, only: [:show, :edit, :update, :destroy]
-  before_action :family, only: [:show, :new, :create, :index, :destroy]
+  before_action :family, only: [:new, :create, :index, :destroy]
 
   def index
-    @people = Person.all
+    @people = @family.people
   end
 
   def show
   end
 
   def new
-    @person = Person.new
+    @person = @family.people.build
   end
 
   def create
-    @person = Person.new(person_params)
+    @person = @family.people.build(person_params)
     if @person.save
       redirect_to person_path(@person)
     else
