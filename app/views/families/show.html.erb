@@ -1,2 +1,6 @@
 <h1><%= @family.name %></h1>
-<%= image_tag @family.photo.img_url, :size => "725x450" %>
+<%= image_tag @family.family_portrait %><br>
+<br>
+<%= link_to '<button type="button">View Family Members</button>'.html_safe, people_path(@family.people) %><br>
+<br>
+<%= link_to '<button type="button">View Family Photos</button>'.html_safe, photos_path(@family.photos) %>
