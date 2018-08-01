@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_01_161759) do
+ActiveRecord::Schema.define(version: 2018_08_01_193040) do
 
   create_table "ethnicities", force: :cascade do |t|
     t.string "type"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "percentage"
   end
 
   create_table "families", force: :cascade do |t|

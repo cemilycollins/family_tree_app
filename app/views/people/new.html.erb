@@ -1,6 +1,6 @@
-<h1>Edit Form</h1>
+<h1>Create New Person</h1>
 
-<%= form_for @person do |f| %>
+<%= form_for @person, url: family_people_path do |f| %>
   <%= f.label :first_name %><br>
   <%= f.text_field :first_name %><br>
   <%= f.label :last_name %><br>
