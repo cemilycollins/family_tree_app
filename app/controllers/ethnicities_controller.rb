@@ -1,20 +1,19 @@
 class EthnicitiesController < ApplicationController
 
-  validates :percentage, numericality: true {maximum: 100}
-
   before_action :person, only: [:new, :create]
   before_action :ethnicity, only: [:edit, :update, :destroy]
 
   def edit
+    @person = @ethnicity.person
+  end
+
+  def update
+    @person = @ethnicity.person
     if @ethnicity.update(ethnicity_params)
       redirect_to person_path(@person)
     else
       render :edit
     end
-  end
-
-  def update
-
   end
 
   def new
@@ -36,7 +35,7 @@ class EthnicitiesController < ApplicationController
   private
 
   def ethnicity_params
-    params.require(:ethnicity).permit(:type, :percentage)
+    params.require(:ethnicity).permit(:name, :percentage)
   end
 
   def person
