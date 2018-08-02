@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  #
-  # resources :users do
+
+  resources :users, except: :index do
       resources :photos
-      resources :families do
+      resources :families, except: :index do
         resources :photos
         resources :people, shallow: true do
           resources :ethnicities, only: [:new, :create, :edit, :update, :destroy]
@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 
         end
       end
-  # end
+  end
 
-  # get '/sign_in', to: 'sessions#new'
-  # post '/sign_in', to: 'sessions#create'
-  # delete '/sign_out', to: 'sessions#destroy'
+  get '/sign_in', to: 'sessions#new'
+  post '/sign_in', to: 'sessions#create'
+  delete '/sign_out', to: 'sessions#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -6,7 +6,7 @@ class Person < ApplicationRecord
   has_many :partnerships
   has_many :partners, through: :partnerships, foreign_key: "partner_id"
   has_many :ethnicities
-  belongs_to :family
+  belongs_to :family, optional: true
   belongs_to :user, optional: true
 
 

@@ -1,0 +1,15 @@
+<h1>Add A Partnership for <%= @person.to_s %></h1>
+
+<p>Note: You can only add a partnership with an existing person record.</p>
+<p>If you'd like to create a new person, please go back to the <%= link_to "family page", user_family_people_path(@user, @user.family)%>.</p>
+
+<%= form_for @partnership, url: person_partnerships_path(@person) do |f| %>
+
+  <%= f.label :partner_id %><br>
+  <%= f.collection_select :partner_id, @person.family.people, :id, :to_s %><br>
+  <br>
+  <%= f.label :status, "Status (e.g. divorced, married)" %>
+  <%= f.text_field :status %><br>
+  <br>
+  <%= f.submit %>
+<% end %>

@@ -1,5 +1,8 @@
 <h1>Add A Relationship for <%= @person.to_s %></h1>
 
+<p>Note: You can only add a relationship with a person who exists in the database.</p>
+<p>If you'd like to create a new person, please go back to the <%= link_to "family page", user_family_people_path(@user, @user.family)%>.</p>
+
 <%= form_for @relationship, url: person_relationships_path(@person) do |f| %>
 
   <%= f.label :child_id %><br>
