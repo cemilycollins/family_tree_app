@@ -30,6 +30,9 @@ class PartnershipsController < ApplicationController
   end
 
   def destroy
+    @person = @partnership
+    @partnership.destroy
+
   end
 
   private
