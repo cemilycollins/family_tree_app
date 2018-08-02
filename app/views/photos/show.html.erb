@@ -1,0 +1,10 @@
+<h1><%= @photo.name %></h1>
+<%= image_tag @photo.img_url, :size => "725x450"%><br>
+<br>
+<%= link_to '<button type="button">Edit Photo</button>'.html_safe, edit_photo_path(@photo) %><br>
+<br>
+<%= form_for @photo, method: "delete" do |f| %>
+<%= f.submit "Delete Photo"%>
+<% end %> <br>
+
+<%= link_to '<button type="button">Return to Family Photos</button>'.html_safe, family_photos_path(@family) %>

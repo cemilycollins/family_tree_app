@@ -8,44 +8,14 @@
 
 <h1><%= @family.name %></h1>
 
+
 <%= form_tag new_family_person_path(@family), method: "get" do %>
 <%= submit_tag "Add A Person To The Family" %>
 <% end %><br>
-
-<h2>Pritchett Family</h2>
 <ul>
-  <% @people.each do |person| %>
-    <% if person.last_name.include?("Pritchett") %>
-      <li><%= link_to person.to_s, person_path(person) %></li>
-    <% end %>
-  <% end %>
-</ul>
-
-<h2>Dunphy Family</h2>
-<ul>
-  <% @people.each do |person| %>
-    <% if person.last_name.include?("Dunphy") %>
-      <li><%= link_to person.to_s, person_path(person) %></li>
-    <% end %>
-  <% end %>
-</ul>
-
-<h2>Tucker-Pritchett Family</h2>
-<ul>
-  <% @people.each do |person| %>
-    <% if person.last_name.include?("Tucker") && person.last_name.include?("Pritchett")%>
-      <li><%= link_to person.to_s, person_path(person) %></li>
-    <% end %>
-  <% end %>
-</ul>
-
-<h2>Delgado Family</h2>
-<ul>
-  <% @people.each do |person| %>
-    <% if person.last_name.include?("Delgado") %>
-      <li><%= link_to person.to_s, person_path(person) %></li>
-    <% end %>
-  <% end %>
+<% @people.each do |person|%>
+  <li><%= link_to person, person_path(person) %></li>
+<% end %>
 </ul>
 
 </body>
