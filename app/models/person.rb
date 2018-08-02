@@ -10,6 +10,7 @@ class Person < ApplicationRecord
   belongs_to :family
   belongs_to :user, optional: true
 
+  validates :first_name, :last_name, :dob, :place_of_birth, :current_location, :family_id, presence: true
   accepts_nested_attributes_for :photos
 
 
@@ -100,6 +101,12 @@ class Person < ApplicationRecord
 
   def family_portrait
     self.family.find {|photo| photo.photo_type == "family portrait"}
+  end
+
+
+
+  def age
+    Date.today.year - self.dob.year
   end
 
 end

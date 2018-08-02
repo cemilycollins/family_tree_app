@@ -8,6 +8,7 @@
   <% end %>
 <br>
 <p>Birthday: <%= @person.dob.strftime("%B %d, %Y") %></p>
+<p>Age: <%= @person.age %></p>
 <% if @person.deceased %>
 <p>Died: <%= @person.dod %></p>
 <% end %>
