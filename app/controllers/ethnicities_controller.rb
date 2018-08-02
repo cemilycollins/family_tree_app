@@ -46,4 +46,28 @@ class EthnicitiesController < ApplicationController
     @ethnicity = Ethnicity.find(params[:id])
   end
 
+  def check_authentication
+    if !user_is_signed_in
+      flash[:alert] = "you need to sign in to view that"
+      redirect_to sign_in_path
+    end
+  end
+
+  def user_is_signed_in
+    @user = User.find(session[:user_id])
+    if params[:person_id]
+      @person = Person.find(params[:person_id])
+    elsif params[:id]
+      @ethnicity = Ethnicity.find(params[:id])
+      @person = @ethnicity.person
+    end
+    if params[:user_id]
+      session[:user_id] == params[:user_id].to_i
+    elsif params[:person_id] || params[:id]
+      @user.family == @person.family
+    else
+      @user = User.find(session[:user_id])
+    end
+  end
+
 end

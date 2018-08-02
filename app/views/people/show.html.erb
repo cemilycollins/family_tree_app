@@ -20,6 +20,9 @@
 <%= submit_tag "Edit Personal Information" %>
 <% end %>
 
+<br>
+<%= link_to '<button type="button">Go Back To Family Page</button>'.html_safe, user_family_path(@user, @user.family) %>
+
 <h2>Ethnicities:</h2>
 
 <p>Ethnicities Calculated From Relatives</p>
@@ -86,7 +89,7 @@
 
 <h3>Edit or add relationships:</h3>
 <p>Note: You can only add a partnership with an existing person record.</p>
-<p>If you'd like to create a new person, please go back to the <%= link_to "family page", family_people_path(@family)%>.</p>
+<p>If you'd like to create a new person, please go back to the <%= link_to "family page", user_family_people_path(@user, @family)%>.</p>
 
 <%= form_tag new_person_relationship_path(@person), method: "get" do %>
 <%= submit_tag "Create New Parent Or Child Relationship" %>

@@ -6,8 +6,8 @@ class Person < ApplicationRecord
   has_many :partnerships
   has_many :partners, through: :partnerships, foreign_key: "partner_id"
   has_many :ethnicities
+  belongs_to :family, optional: true
   has_many :photos
-  belongs_to :family
   belongs_to :user, optional: true
 
   validates :first_name, :last_name, :dob, :place_of_birth, :current_location, :family_id, presence: true

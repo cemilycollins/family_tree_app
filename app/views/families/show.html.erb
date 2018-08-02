@@ -3,6 +3,7 @@
   <%= image_tag @family.family_portrait, :size => "725x450"%><br>
 <% end %>
 
+<h2>Number Of Family Members: <%= @family.num_of_people %></h2>
 
 <h2>Ethnicities:</h2>
 <ul>
@@ -13,8 +14,6 @@
 
 
 <br>
-<%= link_to '<button type="button">View Family Members</button>'.html_safe, family_people_path(@family) %><br>
+<%= link_to '<button type="button">View Family Members</button>'.html_safe, user_family_people_path(@user, @family) %><br>
 <br>
-<%= link_to '<button type="button">View Family Photos</button>'.html_safe, family_photos_path(@family) %><br>
-<br>
-<%= link_to '<button type="button">View Families</button>'.html_safe, families_path %>
+<%= link_to '<button type="button">View Family Photos</button>'.html_safe, user_family_photos_path(@user, @family) %><br>

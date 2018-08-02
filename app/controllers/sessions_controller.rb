@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       # set cookies user id
       # instead of using cookies, we can use the session!
       session[:user_id] = @user.id
-      redirect_to person_path(@user.person)
+      redirect_to user_path(@user)
     else
       flash[:alert] = "Incorrect username or password"
       redirect_to sign_in_path
