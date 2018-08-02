@@ -7,6 +7,7 @@ class Person < ApplicationRecord
   has_many :partners, through: :partnerships, foreign_key: "partner_id"
   has_many :ethnicities
   belongs_to :family
+  belongs_to :user, optional: true
 
 
   # These were lines I used in the person edit form to update a person's parents.
