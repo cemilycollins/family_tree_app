@@ -13,7 +13,8 @@
 <%= form_tag new_family_person_path(@family), method: "get" do %>
 <%= submit_tag "Add Family Member" %>
 <% end %><br>
-<%= link_to '<button type="button">Return to Family Page</button>'.html_safe, family_path(@family) %>
+<%= link_to '<button type="button">Return to Family Page</button>'.html_safe, family_path(@family) %><br>
+<br>
 <ul>
 <% @people.each do |person|%>
   <li><%= link_to person, person_path(person) %></li>

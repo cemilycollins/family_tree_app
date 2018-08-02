@@ -15,9 +15,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @family = Family.find(params[:family_id])
     @photo = Photo.create(photo_params)
     if @photo.valid?
+      @family = @photo.family
       @photo.save
       redirect_to family_photos_path(@family)
     else
@@ -45,7 +45,7 @@ class PhotosController < ApplicationController
 private
 
   def photo_params
-    params.require(:photo).permit(:name, :img_url, :family_id)
+    params.require(:photo).permit(:name, :img_url, :family_id, :person_id)
   end
 
   def photo
