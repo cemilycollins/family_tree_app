@@ -1,7 +1,8 @@
 <h1><%= @family.name %></h1>
-<% if @family.family_portrait %>
+<% if @family.family_portrait%>
   <%= image_tag @family.family_portrait, :size => "725x450"%><br>
 <% end %>
+
 <br>
 <%= link_to '<button type="button">View Family Members</button>'.html_safe, family_people_path(@family) %><br>
 <br>

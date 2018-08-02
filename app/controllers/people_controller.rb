@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_action :person, only: [:show, :edit, :update, :destroy]
-  before_action :family, only: [:new, :create, :index, :destroy]
+  before_action :family, only: [:new, :create, :index]
 
   def index
     @people = @family.people
@@ -35,8 +35,9 @@ class PeopleController < ApplicationController
   end
 
   def destroy
+    @family = @person.family
     @person.destroy
-    redirect_to people_path
+    redirect_to family_people_path(@family)
   end
 
 private

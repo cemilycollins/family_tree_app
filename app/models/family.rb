@@ -4,6 +4,7 @@ class Family < ApplicationRecord
   accepts_nested_attributes_for :photos
 
   def family_portrait
+
     self.photos.find {|photo| photo.photo_type = "family portrait"}.img_url
   end
 

@@ -9,6 +9,7 @@ class Person < ApplicationRecord
   belongs_to :family
 
 
+
   # These were lines I used in the person edit form to update a person's parents.
   # There were also new methods in Relationship class for .parent_name and .parent_name=
   # accepts_nested_attributes_for :parent_relationships
@@ -83,5 +84,9 @@ class Person < ApplicationRecord
     end
     g_array
   end
+
+  # def self_portrait
+  #   self.family.photos.find {|photo| photo.name = "#{self.first_name} #{self.last_name}" && photo.photo_type == "self portrait"}
+  # end
 
 end
