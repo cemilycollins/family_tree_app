@@ -7,6 +7,7 @@ class Family < ApplicationRecord
   validates :name, presence: true
 
   def family_portrait
+
     self.photos.find {|photo| photo.photo_type = "family portrait"}.img_url
   end
 

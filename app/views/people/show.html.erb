@@ -1,4 +1,4 @@
-<h1><%= @person.to_s %></h1>
+<h1><%= @person.to_s %></h1><br>
 
 <p>Birthday: <%= @person.dob.strftime("%B %d, %Y") %></p>
 <% if @person.deceased %>
@@ -7,6 +7,10 @@
 <p>Place Of Birth: <%= @person.place_of_birth %></p>
 <p>Current Location: <%= @person.current_location %></p>
 <p>Gender: <%= @person.gender.capitalize %></p>
+
+<%= form_tag edit_person_path(@person), method: "get" do %>
+<%= submit_tag "Edit Personal Information" %>
+<% end %>
 
 <h2>Ethnicities:</h2>
 
@@ -30,7 +34,7 @@
 
 <%= form_tag new_person_ethnicity_path(@person), method: "get" do %>
 <%= submit_tag "Add An Ethnicity" %>
-<% end %><br>
+<% end %>
 
 
  <% if !@person.partners.empty? %>
@@ -72,12 +76,6 @@
     </ul>
 <% end %>
 
-<h3>Want to edit this person?</h3>
-
-<%= form_tag edit_person_path(@person), method: "get" do %>
-<%= submit_tag "Edit Personal Information" %>
-<% end %>
-
 <h3>Edit or add relationships:</h3>
 <p>Note: You can only add a partnership with an existing person record.</p>
 <p>If you'd like to create a new person, please go back to the <%= link_to "family page", family_people_path(@family)%>.</p>
@@ -85,7 +83,11 @@
 <%= form_tag new_person_relationship_path(@person), method: "get" do %>
 <%= submit_tag "Create New Parent Or Child Relationship" %>
 <% end %>
-
+<br>
 <%= form_tag new_person_partnership_path(@person), method: "get" do %>
 <%= submit_tag "Create New Partnership" %>
 <% end %>
+<br>
+<%= form_for @person, method: "delete" do |f| %>
+<%= f.submit "Delete"%>
+<% end %> <br>
