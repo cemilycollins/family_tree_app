@@ -6,13 +6,15 @@ class Ethnicity < ApplicationRecord
   validates :name, uniqueness: { scope: :person_id }, presence: true
 
   def total_ethnicity_percentage_validation
-    @person = self.person
-    ethnicity_sum = 0
-    @person.ethnicities.each do |ethnicity|
-      ethnicity_sum += ethnicity.percentage
-    end
-    if ethnicity_sum > 100
-      self.errors[:percentage] << 'That percentage is too high. The sum total of all ethnicity percentages must be less than or equal to 100'
+    if self.person
+      @person = self.person
+      ethnicity_sum = 0
+      @person.ethnicities.each do |ethnicity|
+        ethnicity_sum += ethnicity.percentage
+      end
+      if ethnicity_sum > 100
+        self.errors[:percentage] << 'That percentage is too high. The sum total of all ethnicity percentages must be less than or equal to 100'
+      end
     end
   end
 
@@ -22,7 +24,8 @@ class Ethnicity < ApplicationRecord
       {name: "Hispanic or Latino", percentage: 0},
       {name: "Asian/Pacific Islander", percentage: 0},
       {name: "American Indian or Alaska Native", percentage: 0},
-      {name: "Black or African American", percentage: 0}
+      {name: "Black or African American", percentage: 0},
+      {name: "Unknown", percentage: 0}
       ]
     a = e_array.map do |hash|
       Ethnicity.new(hash)
@@ -30,6 +33,12 @@ class Ethnicity < ApplicationRecord
     a
   end
 
-
+  def self.hash
+    new_hash = {}
+    Ethnicity.list.each do |ethnicity|
+      new_hash[ethnicity.name] = ethnicity.percentage
+    end
+    new_hash
+  end
 
 end

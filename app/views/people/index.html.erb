@@ -1,4 +1,14 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%= @family.name %></title>
+  </head>
+  <body>
+
 <h1><%= @family.name %> Members</h1>
+
 
 <%= form_tag new_family_person_path(@family), method: "get" do %>
 <%= submit_tag "Add Family Member" %>
@@ -9,3 +19,6 @@
   <li><%= link_to person, person_path(person) %></li>
 <% end %>
 </ul>
+
+</body>
+</html>

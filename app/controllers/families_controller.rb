@@ -1,5 +1,7 @@
 class FamiliesController < ApplicationController
 
+  # before_action :user
+
   def index
     @families = Family.all
   end
@@ -28,6 +30,10 @@ class FamiliesController < ApplicationController
 private
   def family_params
     params.require(:family).permit(:name, photo_attributes: [:name, :img_url])
+  end
+
+  def user
+    @user = User.find(params[:user_id])
   end
 
 end

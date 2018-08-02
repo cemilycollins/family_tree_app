@@ -3,6 +3,8 @@ Relationship.destroy_all
 Partnership.destroy_all
 Family.destroy_all
 Photo.destroy_all
+Ethnicity.destroy_all
+User.destroy_all
 
 
 Family.create([name: "Modern Family"])
@@ -183,4 +185,8 @@ Relationship.create([
     { person: Person.find_by(first_name: "Gloria"), name: "Hispanic or Latino", percentage: 100},
     { person: Person.find_by(first_name: "Jay"), name: "White(including Middle Eastern)", percentage: 100},
     { person: Person.find_by(first_name: "DeDe"), name: "White(including Middle Eastern)", percentage: 100}
+    ])
+
+  User.create([
+    {username: "mannyman", first_name: "Manny", last_name: "Delgado", password: "pw", person: Person.find_by(first_name: "Manny")}
     ])

@@ -3,6 +3,15 @@
   <%= image_tag @family.family_portrait, :size => "725x450"%><br>
 <% end %>
 
+
+<h2>Ethnicities:</h2>
+<ul>
+<% @family.ethnicities.each do |key, value| %>
+  <li><%= key + " - " + value.to_s + "% "%></li>
+<% end %>
+</ul>
+
+
 <br>
 <%= link_to '<button type="button">View Family Members</button>'.html_safe, family_people_path(@family) %><br>
 <br>
