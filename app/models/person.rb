@@ -22,6 +22,44 @@ class Person < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def my_ethnicities
+    new_hash = {}
+    total = 0
+    if self.blood_related_parents.empty?
+      new_hash["Unknown"] = 100
+    else
+      self.blood_related_parents.each do |parent|
+        if parent.ethnicities.empty?
+          new_hash["Unknown"] = 50
+          total += 50
+        else
+          parent.ethnicities.each do |ethnicity|
+            half_percentage = ethnicity.percentage/2
+            total += half_percentage
+            if new_hash.has_key?(ethnicity.name)
+              new_hash[ethnicity.name] += half_percentage
+            else
+              new_hash[ethnicity.name] = half_percentage
+            end
+          end
+        end
+      end
+      if total < 100 && new_hash.has_key?("Unknown")
+        new_hash["Unknown"] += (100 - total)
+      elsif total < 100
+        new_hash["Unknown"] = (100 - total)
+      end
+    end
+    new_hash
+  end
+
+  def blood_related_parents
+    a = self.parents.select do |parent|
+      Relationship.find_by(parent: parent, child: self).blood_related
+    end
+    a
+  end
+
   def siblings
     sibs_array = []
     self.parents.each do |parent|

@@ -7,6 +7,7 @@ class PeopleController < ApplicationController
   end
 
   def show
+    @family = @person.family
   end
 
   def new
