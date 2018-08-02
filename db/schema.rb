@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_01_210752) do
+ActiveRecord::Schema.define(version: 2018_08_02_165326) do
 
   create_table "ethnicities", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_08_01_210752) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "family_id"
+    t.integer "user_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -61,6 +62,15 @@ ActiveRecord::Schema.define(version: 2018_08_01_210752) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "blood_related"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
