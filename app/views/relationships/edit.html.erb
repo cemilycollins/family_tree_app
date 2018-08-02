@@ -1,0 +1,15 @@
+<h1>Edit Relationship for <%= @person.to_s %></h1>
+
+<%= form_for @relationship, url: person_relationships_path(@person) do |f| %>
+
+  <%= f.label :child_id %><br>
+  <%= f.collection_select :child_id, @person.family.people, :id, :to_s %><br>
+  <br>
+  <%= f.label :parent_id %><br>
+  <%= f.collection_select :parent_id, @person.family.people, :id, :to_s %><br>
+  <br>
+  <%= f.label :blood_related %>
+  <%= f.check_box :blood_related %><br>
+  <br>
+  <%= f.submit %>
+<% end %>
