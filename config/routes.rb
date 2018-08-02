@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :photos
   resources :families do
     resources :photos
     resources :people, shallow: true do

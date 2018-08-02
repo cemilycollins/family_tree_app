@@ -5,5 +5,5 @@
 <br>
 <br>
 <% @photos.each do |photo| %>
-  <%= link_to (image_tag photo.img_url, :size => "725x450"), family_photos_path(photo)%><br>
+  <%= link_to (image_tag photo.img_url, :size => "725x450"), photo_path(photo)%><br>
 <% end %>
