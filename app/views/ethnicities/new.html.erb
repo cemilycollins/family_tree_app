@@ -1,0 +1,31 @@
+<h1>New Ethnicity For <%= @person.to_s %></h1>
+
+<p>Ethnicities Calculated From Relatives</p>
+<ul>
+<% @person.my_ethnicities.each do |key, value| %>
+  <li><%= key + " - " + value.to_s + "% "%></li>
+<% end %>
+</ul>
+
+<% if @person.ethnicities.length > 1 %>
+  <h2>Ethnicities:</h2>
+  <ul>
+  <% @person.ethnicities[0..-2].each do |ethnicity| %>
+    <li><%= ethnicity.name + " - " + ethnicity.percentage.to_s + "% "%></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<h2>New Ethnicity:</h2>
+<%= form_for @ethnicity, url: person_ethnicities_path(@person) do |f| %>
+  <%= f.label :name, "Ethnicity Name" %><br>
+  <%= f.collection_select :name, Ethnicity.list, :name, :name %><br>
+  <%= f.label :percentage %><br>
+  <%= f.number_field :percentage, options = { min: 0, max: 100} %><br>
+  <%= f.submit "Create Ethnicity" %>
+<% end %>
+
+<% if !@ethnicity.errors[:percentage].empty? || !@ethnicity.errors[:name].empty?  %>
+  <p><%= @ethnicity.errors[:percentage][0] %></p>
+  <p><%= @ethnicity.errors[:name][0] %></p>
+<% end %>

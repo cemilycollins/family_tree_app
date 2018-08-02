@@ -37,7 +37,7 @@ class RelationshipsController < ApplicationController
   private
 
   def relationship_params
-
+    params.require(:relationship).permit(:child_id, :parent_id, :blood_related)
   end
 
   def person
@@ -47,7 +47,5 @@ class RelationshipsController < ApplicationController
   def relationship
     @relationship = Ethnicity.find(params[:id])
   end
-
-end
 
 end

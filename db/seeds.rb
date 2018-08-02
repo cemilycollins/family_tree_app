@@ -165,23 +165,23 @@ Person.create([
 ])
 
 Relationship.create([
-  { child: Person.find_by(first_name: "Claire"), parent: Person.find_by(first_name: "Jay")},
-  { child: Person.find_by(first_name: "Mitchell"), parent: Person.find_by(first_name: "Jay")},
-  { child: Person.find_by(first_name: "Mitchell"), parent: Person.find_by(first_name: "DeDe")},
-  { child: Person.find_by(first_name: "Claire"), parent: Person.find_by(first_name: "DeDe")},
-  { child: Person.find_by(first_name: "Haley"), parent: Person.find_by(first_name: "Claire")},
-  { child: Person.find_by(first_name: "Alex"), parent: Person.find_by(first_name: "Claire")},
-  { child: Person.find_by(first_name: "Luke"), parent: Person.find_by(first_name: "Claire")},
-  { child: Person.find_by(first_name: "Haley"), parent: Person.find_by(first_name: "Phil")},
-  { child: Person.find_by(first_name: "Alex"), parent: Person.find_by(first_name: "Phil")},
-  { child: Person.find_by(first_name: "Luke"), parent: Person.find_by(first_name: "Phil")},
-  { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Mitchell")},
-  { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Cameron")},
-  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Gloria")},
-  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Javier")},
-  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Jay")},
-  { child: Person.find_by(first_name: "Joe"), parent: Person.find_by(first_name: "Gloria")},
-  { child: Person.find_by(first_name: "Joe"), parent: Person.find_by(first_name: "Jay")}
+  { child: Person.find_by(first_name: "Claire"), parent: Person.find_by(first_name: "Jay"), blood_related: true},
+  { child: Person.find_by(first_name: "Mitchell"), parent: Person.find_by(first_name: "Jay"), blood_related: true},
+  { child: Person.find_by(first_name: "Mitchell"), parent: Person.find_by(first_name: "DeDe"), blood_related: true},
+  { child: Person.find_by(first_name: "Claire"), parent: Person.find_by(first_name: "DeDe"), blood_related: true},
+  { child: Person.find_by(first_name: "Haley"), parent: Person.find_by(first_name: "Claire"), blood_related: true},
+  { child: Person.find_by(first_name: "Alex"), parent: Person.find_by(first_name: "Claire"), blood_related: true},
+  { child: Person.find_by(first_name: "Luke"), parent: Person.find_by(first_name: "Claire"), blood_related: true},
+  { child: Person.find_by(first_name: "Haley"), parent: Person.find_by(first_name: "Phil"), blood_related: true},
+  { child: Person.find_by(first_name: "Alex"), parent: Person.find_by(first_name: "Phil"), blood_related: true},
+  { child: Person.find_by(first_name: "Luke"), parent: Person.find_by(first_name: "Phil"), blood_related: true},
+  { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Mitchell"), blood_related: false},
+  { child: Person.find_by(first_name: "Lily"), parent: Person.find_by(first_name: "Cameron"), blood_related: false},
+  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Gloria"), blood_related: true},
+  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Javier"), blood_related: true},
+  { child: Person.find_by(first_name: "Manny"), parent: Person.find_by(first_name: "Jay"), blood_related: false},
+  { child: Person.find_by(first_name: "Joe"), parent: Person.find_by(first_name: "Gloria"), blood_related: true},
+  { child: Person.find_by(first_name: "Joe"), parent: Person.find_by(first_name: "Jay"), blood_related: true}
   ])
 
   Partnership.create([
@@ -196,3 +196,9 @@ Relationship.create([
     { person: Person.find_by(first_name: "Mitchell"), partner: Person.find_by(first_name: "Cameron"), status: "married"},
     { person: Person.find_by(first_name: "Cameron"), partner: Person.find_by(first_name: "Mitchell"), status: "married"}
   ])
+
+  Ethnicity.create([
+    { person: Person.find_by(first_name: "Gloria"), name: "Hispanic or Latino", percentage: 100},
+    { person: Person.find_by(first_name: "Jay"), name: "White(including Middle Eastern)", percentage: 100},
+    { person: Person.find_by(first_name: "DeDe"), name: "White(including Middle Eastern)", percentage: 100}
+    ])
