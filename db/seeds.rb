@@ -9,15 +9,6 @@ User.destroy_all
 
 Family.create([name: "Modern Family"])
 
-Photo.create([
-  {
-    name: "Modern Family Photo",
-    photo_type: "family portrait",
-    img_url: "https://www.tvovermind.com/wp-content/uploads/2017/12/modern-family-tile-deeb3bde.jpg",
-    family: Family.find_by(name: "Modern Family")
-  }
-])
-
 
 Person.create([
   {
@@ -185,6 +176,21 @@ Relationship.create([
     { person: Person.find_by(first_name: "Gloria"), name: "Hispanic or Latino", percentage: 100},
     { person: Person.find_by(first_name: "Jay"), name: "White(including Middle Eastern)", percentage: 100},
     { person: Person.find_by(first_name: "DeDe"), name: "White(including Middle Eastern)", percentage: 100}
+    ])
+
+    Photo.create([
+      {
+        name: "Modern Family Photo",
+        photo_type: "family portrait",
+        img_url: "https://www.tvovermind.com/wp-content/uploads/2017/12/modern-family-tile-deeb3bde.jpg",
+        family: Family.find_by(name: "Modern Family")
+      },
+      {
+        name: "Jay Pritchett",
+        photo_type: "profile picture",
+        img_url: "http://www.usanetwork.com/sites/usanetwork/files/modernfamily_gallery_jay-1.jpg",
+        person: Person.find_by(first_name: "Jay")
+      }
     ])
 
   User.create([
