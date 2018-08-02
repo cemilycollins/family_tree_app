@@ -6,8 +6,12 @@ class Person < ApplicationRecord
   has_many :partnerships
   has_many :partners, through: :partnerships, foreign_key: "partner_id"
   has_many :ethnicities
+  has_many :photos
   belongs_to :family
   belongs_to :user, optional: true
+
+  accepts_nested_attributes_for :photos
+
 
 
 
@@ -86,8 +90,16 @@ class Person < ApplicationRecord
     g_array
   end
 
-  # def self_portrait
-  #   self.family.photos.find {|photo| photo.name = "#{self.first_name} #{self.last_name}" && photo.photo_type == "self portrait"}
-  # end
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def self_portrait
+     self.photos.find {|photo| photo.photo_type == "profile picture"}
+  end
+
+  def family_portrait
+    self.family.find {|photo| photo.photo_type == "family portrait"}
+  end
 
 end

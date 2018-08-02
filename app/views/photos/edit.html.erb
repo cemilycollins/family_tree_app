@@ -4,10 +4,14 @@
   <%= f.label "Name: " %>
   <%= f.text_field :name %><br>
   <br>
-  <%= f.label "Photo URL: " %>
-  <%= f.text_field :img_url %><br>
+  <%= f.label "Photo Type: " %>
+  <%= f.text_field :photo_type %><br>
   <br>
+  <%= f.label "Family Name: " %><br>
   <%= f.collection_select(:family_id, Family.all, :id, :name) %><br>
+  <br>
+  <%= f.label "Who's photo is this? " %><br>
+  <%= f.collection_select(:person_id, Person.all, :id, :full_name) %><br>
   <br>
   <%= f.submit "Edit Photo" %>
 <% end %>

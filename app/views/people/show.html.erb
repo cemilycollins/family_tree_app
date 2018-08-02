@@ -1,5 +1,12 @@
 <h1><%= @person.to_s %></h1><br>
-
+  <% if @person.self_portrait %>
+    <%= image_tag @person.self_portrait.img_url, :size => "725x450"%><br>
+    <br>
+    <%= link_to '<button type="button">Edit Profile Picture</button>'.html_safe, edit_photo_path(@person.self_portrait) %><br>
+  <% else %>
+    <%= link_to '<button type="button">Add Profile Picture</button>'.html_safe, new_photo_path %><br>
+  <% end %>
+<br>
 <p>Birthday: <%= @person.dob.strftime("%B %d, %Y") %></p>
 <% if @person.deceased %>
 <p>Died: <%= @person.dod %></p>
