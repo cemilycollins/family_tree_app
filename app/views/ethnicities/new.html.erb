@@ -18,14 +18,18 @@
 
 <h2>New Ethnicity:</h2>
 <%= form_for @ethnicity, url: person_ethnicities_path(@person) do |f| %>
-  <%= f.label :name, "Ethnicity Name" %><br>
+  <%= f.label :name, "Ethnicity Name" %>
   <%= f.collection_select :name, Ethnicity.list, :name, :name %><br>
-  <%= f.label :percentage %><br>
+  <br>
+  <%= f.label :percentage %>
   <%= f.number_field :percentage, options = { min: 0, max: 100} %><br>
+  <br>
   <%= f.submit "Create Ethnicity" %>
-<% end %>
+<% end %><br>
 
 <% if !@ethnicity.errors[:percentage].empty? || !@ethnicity.errors[:name].empty?  %>
-  <p><%= @ethnicity.errors[:percentage][0] %></p>
-  <p><%= @ethnicity.errors[:name][0] %></p>
+  <p><%= @ethnicity.errors[:percentage][0] %></p><br>
+  <p><%= @ethnicity.errors[:name][0] %></p><br>
 <% end %>
+
+<div><%= link_to "Go back to #{@person.to_s}'s page", person_path(@person) %></div>

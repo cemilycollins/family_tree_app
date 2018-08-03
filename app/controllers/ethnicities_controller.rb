@@ -30,6 +30,9 @@ class EthnicitiesController < ApplicationController
   end
 
   def destroy
+    @person = @ethnicity.person
+    @ethnicity.destroy
+    redirect_to person_path(@person)
   end
 
   private

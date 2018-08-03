@@ -4,14 +4,6 @@ class Relationship < ApplicationRecord
 
   validates :child_id, uniqueness: {scope: :parent_id}
 
-  # def parent_name
-  #   self.parent.to_s
-  # end
-  #
-  # def parent_name=(name)
-  #   a = name.split(' ')
-  #   self.parent.first_name = a[0]
-  #   self.parent.last_name = a[0]
-  # end
+
 
 end

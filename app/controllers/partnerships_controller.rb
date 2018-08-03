@@ -30,15 +30,15 @@ class PartnershipsController < ApplicationController
   end
 
   def destroy
-    @person = @partnership
+    @person = @partnership.person
     @partnership.destroy
-
+    redirect_to person_path(@person)
   end
 
   private
 
   def partnership_params
-    params.require(:partnership).permit(:name, :percentage)
+    params.require(:partnership).permit(:status, :partner_id)
   end
 
   def person

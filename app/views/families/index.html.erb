@@ -1,6 +1,0 @@
-<h1>Families</h1>
-<% @families.each do |family| %>
-  <%= link_to family.name, family_path(family) %><br>
-<% end %>
-<br>
-<%= link_to '<button type="button">New Family</button>'.html_safe, new_family_path %>

@@ -1,12 +1,13 @@
 <h1><%= @person.to_s %></h1><br>
+
+
   <% if @person.self_portrait %>
     <%= image_tag @person.self_portrait.img_url, :size => "725x450"%><br>
     <br>
-    <%= link_to '<button type="button">Edit Profile Picture</button>'.html_safe, edit_photo_path(@person.self_portrait) %><br>
-  <% else %>
-    <%= link_to '<button type="button">Add Profile Picture</button>'.html_safe, new_photo_path %><br>
+    <%= link_to '<button type="button">Edit Profile Picture</button>'.html_safe, edit_user_photo_path(@user, @person.self_portrait) %><br>
+  <% elsif @user.family %>
+    <%= link_to '<button type="button">Add Profile Picture</button>'.html_safe, new_user_photo_path(@user) %><br>
   <% end %>
-<br>
 <p>Birthday: <%= @person.dob.strftime("%B %d, %Y") %></p>
 <p>Age: <%= @person.age %></p>
 <% if @person.deceased %>
@@ -20,85 +21,100 @@
 <%= submit_tag "Edit Personal Information" %>
 <% end %>
 
+
+
 <br>
-<%= link_to '<button type="button">Go Back To Family Page</button>'.html_safe, user_family_path(@user, @user.family) %>
-
-<h2>Ethnicities:</h2>
-
-<p>Ethnicities Calculated From Relatives</p>
-<ul>
-<% @person.my_ethnicities.each do |key, value| %>
-  <li><%= key + " - " + value.to_s + "% "%></li>
-<% end %>
-</ul>
-
-<p>Current Ethnicity Records<p>
-<ul>
-<% @person.ethnicities.each do |ethnicity| %>
-  <li><%= ethnicity.name + " - " + ethnicity.percentage.to_s + "% "%>
-  <%= link_to "Edit", edit_ethnicity_path(ethnicity)%></li>
-<% end %>
-</ul>
-<% if @person.ethnicities.empty? %>
-<p> This person doesn't have any recorded ethnicities. Would you like to add one?</p>
-<% end %>
-
-<%= form_tag new_person_ethnicity_path(@person), method: "get" do %>
-<%= submit_tag "Add An Ethnicity" %>
-<% end %>
-
-
- <% if !@person.partners.empty? %>
-   <h2><%= @person.first_name %>'s Partners: </h2>
-     <ul>
-     <% @person.partnerships.each do |partnership| %>
-      <li>
-       <%= link_to partnership.partner, person_path(partnership.partner) %> - <%= partnership.status.capitalize %>
-      </li>
-     <% end %>
-     </ul>
+<% if !@user.family %>
+ <h2>Next, you should add yourself to a family!</h2>
+ <%= form_tag new_user_family_path(@user), method: "get" do %>
+ <%= submit_tag "Create Your Family" %>
  <% end %>
+<% elsif @user.family %>
+  <%= link_to '<button type="button">Go Back To Family Page</button>'.html_safe, user_family_path(@user, @user.family) %>
+
+  <h2>Ethnicities:</h2>
+
+  <p>Ethnicities Calculated From Relatives</p>
+  <ul>
+  <% @person.my_ethnicities.each do |key, value| %>
+    <li><%= key + " - " + value.to_s + "% "%></li>
+  <% end %>
+  </ul>
+
+  <p>Current Ethnicity Records<p>
+  <ul>
+  <% @person.ethnicities.each do |ethnicity| %>
+    <li><%= ethnicity.name + " - " + ethnicity.percentage.to_s + "% "%>
+    <%= link_to "Edit", edit_ethnicity_path(ethnicity)%> :: <%= link_to "Delete", ethnicity_path(ethnicity), method: "delete"%></li>
+  <% end %>
+  </ul>
+  <% if @person.ethnicities.empty? %>
+  <p> This person doesn't have any recorded ethnicities. Would you like to add one?</p>
+  <% end %>
+
+  <%= form_tag new_person_ethnicity_path(@person), method: "get" do %>
+  <%= submit_tag "Add An Ethnicity" %>
+  <% end %>
 
 
-<% if !@person.children.empty? %>
-  <h2><%= @person.first_name %>'s Children: </h2>
-    <ul>
-    <% @person.children.each do |child| %>
-      <li><%= link_to child.to_s, person_path(child) %></li>
-    <% end %>
-    </ul>
+   <% if !@person.partners.empty? %>
+     <h2><%= @person.first_name %>'s Partners: </h2>
+       <ul>
+       <% @person.partnerships.each do |partnership| %>
+        <li>
+         <%= link_to partnership.partner, person_path(partnership.partner) %> - <%= partnership.status.capitalize %><br>
+           <%= link_to "Edit Record", edit_partnership_path(partnership)%> :: <%= link_to "Delete Partnership", partnership_path(partnership), method: "delete"%></li>
+       <% end %>
+       </ul>
+   <% end %>
+
+
+  <% if !@person.children.empty? %>
+    <h2><%= @person.first_name %>'s Children: </h2>
+      <ul>
+      <% @person.children.each do |child| %>
+        <li><%= link_to child.to_s, person_path(child) %><br>
+        <% @relationship = @person.child_relationships.find {|rel| rel.child == child} %>
+          <%= link_to "Edit Record", edit_relationship_path(@relationship)%> :: <%= link_to "Delete Relationship", relationship_path(@relationship), method: "delete"%></li>
+      <% end %>
+      </ul>
+  <% end %>
+
+  <% if !@person.parents.empty? %>
+    <h2><%= @person.first_name %>'s Parents: </h2>
+      <ul>
+      <% @person.parents.each do |parent| %>
+        <li><%= link_to parent.to_s, person_path(parent) %><br>
+          <% @relationship = @person.parent_relationships.find {|rel| rel.parent == parent} %>
+            <%= link_to "Edit Record", edit_relationship_path(@relationship)%> :: <%= link_to "Delete Relationship", relationship_path(@relationship), method: "delete"%></li>
+      <% end %>
+      </ul>
+  <% end %>
+
+  <% if !@person.siblings.empty? %>
+    <h2><%= @person.first_name %>'s Siblings: </h2>
+      <ul>
+      <% @person.siblings.each do |sibling| %>
+        <li><%= link_to sibling.to_s, person_path(sibling) %></li>
+      <% end %>
+      </ul>
+  <% end %>
+
+  <h3>Add relationships:</h3>
+  <p>Note: You can only add a partnership with an existing person record.</p>
+  <p>If you'd like to create a new person, please go back to the <%= link_to "family page", user_family_people_path(@user, @family)%>.</p>
+
+  <%= form_tag new_person_relationship_path(@person), method: "get" do %>
+  <%= submit_tag "Create New Parent Or Child Relationship" %>
+  <% end %>
+  <br>
+  <%= form_tag new_person_partnership_path(@person), method: "get" do %>
+  <%= submit_tag "Create New Partnership" %>
+  <% end %>
+  <br>
+  <% if @person != @user.person %>
+    <%= form_for @person, method: "delete" do |f| %>
+    <%= f.submit "Delete Person"%>
+    <% end %> <br>
+  <% end %>
 <% end %>
-
-<% if !@person.parents.empty? %>
-  <h2><%= @person.first_name %>'s Parents: </h2>
-    <ul>
-    <% @person.parents.each do |parent| %>
-      <li><%= link_to parent.to_s, person_path(parent) %></li>
-    <% end %>
-    </ul>
-<% end %>
-
-<% if !@person.siblings.empty? %>
-  <h2><%= @person.first_name %>'s Siblings: </h2>
-    <ul>
-    <% @person.siblings.each do |sibling| %>
-      <li><%= link_to sibling.to_s, person_path(sibling) %></li>
-    <% end %>
-    </ul>
-<% end %>
-
-<h3>Edit or add relationships:</h3>
-<p>Note: You can only add a partnership with an existing person record.</p>
-<p>If you'd like to create a new person, please go back to the <%= link_to "family page", user_family_people_path(@user, @family)%>.</p>
-
-<%= form_tag new_person_relationship_path(@person), method: "get" do %>
-<%= submit_tag "Create New Parent Or Child Relationship" %>
-<% end %>
-<br>
-<%= form_tag new_person_partnership_path(@person), method: "get" do %>
-<%= submit_tag "Create New Partnership" %>
-<% end %>
-<br>
-<%= form_for @person, method: "delete" do |f| %>
-<%= f.submit "Delete"%>
-<% end %> <br>

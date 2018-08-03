@@ -4,10 +4,9 @@ class Family < ApplicationRecord
   has_many :users, through: :people
   accepts_nested_attributes_for :photos
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   def family_portrait
-
     self.photos.find {|photo| photo.photo_type = "family portrait"}.img_url
   end
 

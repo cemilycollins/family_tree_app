@@ -20,7 +20,9 @@ class FamiliesController < ApplicationController
     if @family.save
       @photo = @family.photos.build(name: params[:family][:photo][:name], img_url: params[:family][:photo][:img_url])
       @photo.save
-      redirect_to family_path(@family)
+      @user.person.family = @family
+      @user.person.save
+      redirect_to user_family_path(@user, @family)
     else
       render :new
     end
@@ -28,7 +30,7 @@ class FamiliesController < ApplicationController
 
 private
   def family_params
-    params.require(:family).permit(:name, photo_attributes: [:name, :img_url])
+    params.require(:family).permit(:name, :person_id, photo_attributes: [:name, :img_url])
   end
 
   def user

@@ -18,10 +18,13 @@
 
 <h2>Edit Ethnicity:</h2>
 <%= form_for @ethnicity, url: ethnicity_path(@ethnicity) do |f| %>
-  <%= f.label :name, "Ethnicity Name" %><br>
+<%= form_for @ethnicity, url: person_ethnicities_path(@person) do |f| %>
+  <%= f.label :name, "Ethnicity Name" %>
   <%= f.collection_select :name, Ethnicity.list, :name, :name %><br>
-  <%= f.label :percentage %><br>
+  <br>
+  <%= f.label :percentage %>
   <%= f.number_field :percentage, options = { min: 0, max: 100} %><br>
+  <br>
   <%= f.submit "Update Ethnicity Record" %>
 <% end %>
 

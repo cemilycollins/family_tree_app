@@ -1,6 +1,7 @@
 <h1>Create New Person</h1>
 
-<%= form_for @person, url: family_people_path do |f| %>
+<% if params[:family_id] %>
+<%= form_for @person, url: user_family_people_path(@user, @user.family) do |f| %>
   <%= f.label :first_name %><br>
   <%= f.text_field :first_name %><br>
   <%= f.label :last_name %><br>
@@ -18,4 +19,33 @@
   <%= f.label :gender %><br>
   <%= f.text_field :gender %><br>
   <%= f.submit %>
+<% end %>
+<% else %>
+<%= form_for @person, url: user_people_path(@user) do |f| %>
+  <%= f.label :user_id %><br>
+  <%= f.collection_select :user_id, [@user], :id, :to_s %><br>
+  <%= f.label :first_name %><br>
+  <%= f.text_field :first_name %><br>
+  <%= f.label :last_name %><br>
+  <%= f.text_field :last_name %><br>
+  <%= f.label :dob, "Date of birth - format: 'YYYY-MM-DD'" %><br>
+  <%= f.text_field :dob %><br>
+  <%= f.label :deceased, "Deceased?" %><br>
+  <%= f.check_box :deceased %><br>
+  <%= f.label :dod, "Date deceased (optional)  - format: 'YYYY-MM-DD'" %><br>
+  <%= f.text_field :dod %><br>
+  <%= f.label :place_of_birth %><br>
+  <%= f.text_field :place_of_birth %><br>
+  <%= f.label :current_location %><br>
+  <%= f.text_field :current_location %><br>
+  <%= f.label :gender %><br>
+  <%= f.text_field :gender %><br>
+  <%= f.submit %>
+<% end %>
+<% end %>
+
+<% @person.errors.messages.each do |attribute, message| %>
+  <% if !message.empty? %>
+    <p style="color:red"><%= message %></p>
+  <% end %>
 <% end %>

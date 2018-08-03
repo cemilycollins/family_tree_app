@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_action :person, only: [:show, :edit, :update, :destroy]
-  before_action :family, only: [:new, :create, :index]
+  before_action :family, only: [:index]
 
   def index
     @people = @family.people
@@ -11,11 +11,22 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @person = @family.people.build
+    if params[:family_id]
+      @family = Family.find(params[:family_id])
+      @person = @family.people.build
+    else
+      @person = Person.new
+    end
   end
 
   def create
-    @person = @family.people.build(person_params)
+    if params[:family_id]
+      @family = Family.find(params[:family_id])
+      @person = @family.people.build(person_params)
+    else
+
+      @person = Person.new(person_params)
+    end
     if @person.save
       redirect_to person_path(@person)
     else
@@ -37,13 +48,13 @@ class PeopleController < ApplicationController
   def destroy
     @family = @person.family
     @person.destroy
-    redirect_to family_people_path(@family)
+    redirect_to user_path(@user)
   end
 
 private
 
   def person_params
-    params.require(:person).permit(:first_name, :last_name, :dob, :dod, :deceased, :gender, :place_of_birth, :current_location)
+    params.require(:person).permit(:first_name, :last_name, :dob, :dod, :deceased, :gender, :place_of_birth, :current_location, :user_id)
   end
 
   def person

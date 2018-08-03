@@ -11,15 +11,18 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @photo = Photo.new
+    @photo = Photo.new(photo_type: "profile picture")
   end
 
   def create
-    @photo = Photo.create(photo_params)
+    @photo = Photo.new(photo_params)
     if @photo.valid?
-      @family = @photo.family
       @photo.save
-      redirect_to family_photos_path(@family)
+      if params[:family_id]
+        redirect_to user_family_photos_path(@user, @user.family)
+      else
+        redirect_to person_path(@photo.person)
+      end
     else
       render :new
     end
@@ -45,7 +48,7 @@ class PhotosController < ApplicationController
 private
 
   def photo_params
-    params.require(:photo).permit(:name, :img_url, :family_id, :person_id)
+    params.require(:photo).permit(:name, :img_url, :family_id, :person_id, :photo_type)
   end
 
   def photo
