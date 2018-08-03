@@ -79,7 +79,7 @@ class Person < ApplicationRecord
         p_hash[rel.parent.to_s] = "mother"
       elsif rel.parent.gender.downcase == "male"
         p_hash[rel.parent.to_s] = "stepfather"
-      elsif child.gender.downcase == "female"
+      elsif rel.parent.gender.downcase == "female"
         p_hash[rel.parent.to_s] = "stepmother"
       end
     end

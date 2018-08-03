@@ -18,9 +18,9 @@ class Family < ApplicationRecord
     new_hash = Ethnicity.hash
     total = 0
     self.people.each do |person|
-      person.my_ethnicities.each do |key, value|
-        new_value = value/self.num_of_people
-        new_hash[key] += new_value
+      person.ethnicities.each do |eth|
+        new_value = eth.percentage/self.num_of_people
+        new_hash[eth.name] += new_value
         total += new_value
       end
     end

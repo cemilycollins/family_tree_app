@@ -1,6 +1,6 @@
 <h1>Add A Partnership for <%= @person.to_s %></h1>
 
-<%= form_for @partnership, url: person_partnerships_path(@person) do |f| %>
+<%= form_for @partnership, url: partnership_path(@partnership) do |f| %>
 
   <%= f.label :partner_id %><br>
   <%= f.collection_select :partner_id, @person.family.people, :id, :to_s %><br>
