@@ -13,3 +13,9 @@
   <br>
   <%= f.submit %>
 <% end %>
+
+<% @relationship.errors.messages.each do |attribute, message| %>
+  <% if !message.empty? %>
+    <p style="color:red"><%= message %></p>
+  <% end %>
+<% end %>

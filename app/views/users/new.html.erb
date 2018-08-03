@@ -11,3 +11,15 @@
   <%= f.text_field :password %><br>
   <%= f.submit %>
 <% end %>
+
+<% if flash[:alert] %>
+  <div style="color:red"><%= flash[:alert] %></div>
+<% end %>
+
+<div><%= link_to "Go To Sign In Page", sign_in_path %></div>
+
+<% @user.errors.messages.each do |attribute, message| %>
+  <% if !message.empty? %>
+    <p style="color:red"><%= message %></p>
+  <% end %>
+<% end %>

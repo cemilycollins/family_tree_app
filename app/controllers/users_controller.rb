@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :check_authentication, only: [:new, :create]
 
   def show
     @user = User.find(session[:user_id])
@@ -8,12 +9,19 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => false
   end
 
   def create
-    @user = User.new(user_params)
+    if Person.find_by(first_name: user_params[:first_name], last_name: user_params[:last_name])
+      @person = Person.find_by(first_name: user_params[:first_name], last_name: user_params[:last_name])
+      @user = User.new(user_params)
+      @user.person = @person
+    else
+      @user = User.new(user_params)
+    end
     if @user.save
-      redirect_to user_path(@user)
+      redirect_to sign_in_path
     else
       render :new
     end
@@ -32,12 +40,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    redirect_to new_user_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :passwords)
+    params.require(:user).permit(:first_name, :last_name, :username, :password)
   end
 
   def set_user

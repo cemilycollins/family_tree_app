@@ -10,20 +10,10 @@ class Person < ApplicationRecord
   has_many :photos
   belongs_to :user, optional: true
 
-  validates :first_name, :last_name, :dob, :place_of_birth, :current_location, :family_id, presence: true
+  validates :first_name, :last_name, :dob, :place_of_birth, :current_location, presence: true
   accepts_nested_attributes_for :photos
 
 
-
-
-  # These were lines I used in the person edit form to update a person's parents.
-  # There were also new methods in Relationship class for .parent_name and .parent_name=
-  # accepts_nested_attributes_for :parent_relationships
-  # <%= f.label :edit_parents %><br>
-  # <%= f.fields_for :parent_relationships do |t| %>
-  #   <%= t.label :parent_name %>
-  #   <%= t.text_field :parent_name %>
-  #   <% end %>
 
   def to_s
     self.first_name + " " + self.last_name
@@ -67,6 +57,43 @@ class Person < ApplicationRecord
     a
   end
 
+  def non_blood_related_parents
+    a = self.parents.select do |parent|
+      !Relationship.find_by(parent: parent, child: self).blood_related
+    end
+    a
+  end
+
+  def p_relationship(parent)
+    b = self.parent_relationships.select do |rel|
+      rel.parent == parent
+    end
+  end
+
+  def c_relationship(child)
+
+  end
+
+  def all_siblings
+    sibs_hash = []
+    self.parents.each do |parent|
+      parent.children.each do |child|
+        if child != self
+          if self.blood_related_parents.include?(parent) && child.gender.downcase == "male"
+            sibs_hash[child.to_s] = "brother"
+          elsif self.blood_related_parents.include?(parent) && child.gender.downcase == "female"
+            sibs_hash[child.to_s] = "sister"
+          elsif child.gender.downcase == "male"
+            sibs_hash[child.to_s] = "stepbrother"
+          elsif child.gender.downcase == "female"
+            sibs_hash[child.to_s] = "stepsister"
+          end
+        end
+      end
+    end
+    sibs_hash
+  end
+
   def siblings
     sibs_array = []
     self.parents.each do |parent|
@@ -103,10 +130,10 @@ class Person < ApplicationRecord
     self.family.find {|photo| photo.photo_type == "family portrait"}
   end
 
-
-
   def age
     Date.today.year - self.dob.year
   end
+
+
 
 end

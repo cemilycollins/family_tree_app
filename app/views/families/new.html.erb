@@ -1,6 +1,6 @@
 <h1>New Family</h1>
 
-<%= form_for @family do |f| %>
+<%= form_for [@user, @family] do |f| %>
   <%= f.label "Name:" %>
   <%= f.text_field :name %><br>
     <%= f.label "Photo Name:" %>
@@ -11,4 +11,10 @@
   <% end %>
   <br>
   <%= f.submit "Create Family" %>
+<% end %>
+
+<% @family.errors.messages.each do |attribute, message| %>
+  <% if !message.empty? %>
+    <p style="color:red"><%= message %></p>
+  <% end %>
 <% end %>

@@ -19,3 +19,9 @@
   <%= f.text_field :gender %><br>
   <%= f.submit %>
 <% end %>
+
+<% @person.errors.messages.each do |attribute, message| %>
+  <% if !message.empty? %>
+    <p style="color:red"><%= message %></p>
+  <% end %>
+<% end %>

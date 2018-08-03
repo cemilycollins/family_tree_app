@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+<%= link_to '<button type="button">Sign Out</button>'.html_safe, sign_out_path, method: "delete"%>
+<%= link_to '<button type="button">My User Profile</button>'.html_safe, user_path(@user) %>
   <body>
     <%= yield %>
   </body>

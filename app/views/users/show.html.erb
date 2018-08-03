@@ -1,27 +1,31 @@
 <h1>Your Profile:</h1>
 
-<h2>Name: <%= @user.first_name %> <%= @user.last_name %></h2>
+<h2>Name: <%= @user.first_name %> <%= @user.last_name %></h2><br>
 
 <% if !@user.person %>
-  <%= form_tag new_user_person_path(@user), method: "get" do %>
+  <%= form_tag "#{@user.id}/people/new", method: "get" do %>
   <%= submit_tag "Create Yourself In Your Family Tree!" %>
-  <% end %>
+  <% end %><br>
   <% else %>
     <h3>Your Person Profile: <%= link_to @user.person.to_s, person_path(@user.person) %></h3>
+    <%= form_for @user.person, method: "delete" do |f| %>
+    <%= f.submit "Delete Person Profile"%>
+    <% end %> <br>
+    <div style="color:red">Warning: Deleting this person from your profile will delete all family data.</div>
 <% end %>
 
 <% if !@user.family && @user.person %>
   <%= form_tag new_user_family_path(@user), method: "get" do %>
   <%= submit_tag "Create Your Family" %>
-  <% end %>
-<% else %>
+  <% end %><br>
+<% elsif @user.family %>
   <h3>Your Family: <%= link_to @user.family.name, user_family_path(@user, @user.family) %></h3>
 <% end %>
 
 <%= form_tag edit_user_path(@user), method: "get" do %>
-<%= submit_tag "Edit Personal Information" %>
-<% end %>
+<%= submit_tag "Edit User Information" %>
+<% end %><br>
 
 <%= form_tag user_path(@user), method: "delete" do %>
-<%= submit_tag "Delete User" %>
-<% end %>
+<%= submit_tag "Delete User" %><br>
+<% end %><br>

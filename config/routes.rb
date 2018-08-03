@@ -13,7 +13,8 @@ Rails.application.routes.draw do
         end
       end
   end
-
+  get '/users/:user_id/people/new', to: 'people#new'
+  post '/users/:user_id/people', to: 'people#create', as: 'user_people'
   get '/sign_in', to: 'sessions#new'
   post '/sign_in', to: 'sessions#create'
   delete '/sign_out', to: 'sessions#destroy'

@@ -3,7 +3,7 @@ class Ethnicity < ApplicationRecord
 
   validates :percentage, numericality: { maximum: 100, only_integer: true}
   validate :total_ethnicity_percentage_validation
-  validates :name, uniqueness: { scope: :person_id }, presence: true
+  validates :name, uniqueness: { scope: :person_id, message: "This person already has that ethnicity." }, presence: true
 
   def total_ethnicity_percentage_validation
     if self.person
