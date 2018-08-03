@@ -13,13 +13,13 @@
 <%= form_tag new_user_family_person_path(@user, @family), method: "get" do %>
 <%= submit_tag "Add Family Member" %>
 <% end %><br>
-    
+
 <%= link_to '<button type="button">Return to Family Page</button>'.html_safe, user_family_path(@user, @family) %>
 <br>
 
 <ul>
 <% @people.each do |person|%>
-  <li><%= link_to person, person_path(person) %></li>
+  <li><%= link_to person, person_path(person) %><%= @user.person.all_family_members[person.to_s] ? " - Your #{@user.person.all_family_members[person.to_s]}" : "" %></li>
 <% end %>
 </ul>
 

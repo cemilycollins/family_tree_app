@@ -70,12 +70,41 @@ class Person < ApplicationRecord
     end
   end
 
-  def c_relationship(child)
-
+  def all_parents
+    p_hash = {}
+    self.parent_relationships.each do |rel|
+      if rel.blood_related && rel.parent.gender.downcase == "male"
+        p_hash[rel.parent.to_s] = "father"
+      elsif rel.blood_related && rel.parent.gender.downcase == "female"
+        p_hash[rel.parent.to_s] = "mother"
+      elsif rel.parent.gender.downcase == "male"
+        p_hash[rel.parent.to_s] = "stepfather"
+      elsif child.gender.downcase == "female"
+        p_hash[rel.parent.to_s] = "stepmother"
+      end
+    end
+    p_hash
   end
 
+  def all_children
+    c_hash = {}
+    self.child_relationships.each do |rel|
+      if rel.blood_related && rel.child.gender.downcase == "male"
+        c_hash[rel.child.to_s] = "son"
+      elsif rel.blood_related && rel.child.gender.downcase == "female"
+        c_hash[rel.child.to_s] = "daughter"
+      elsif rel.child.gender.downcase == "male"
+        c_hash[rel.child.to_s] = "adopted son"
+      elsif child.gender.downcase == "female"
+        c_hash[rel.child.to_s] = "adopted daughter"
+      end
+    end
+    c_hash
+  end
+
+
   def all_siblings
-    sibs_hash = []
+    sibs_hash = {}
     self.parents.each do |parent|
       parent.children.each do |child|
         if child != self
@@ -92,6 +121,91 @@ class Person < ApplicationRecord
       end
     end
     sibs_hash
+  end
+
+  def all_grandparents
+    parents_hash = {}
+    self.parents.each do |parent|
+      parent.parents.each do |gp|
+        if self.blood_related_parents.include?(parent) && parent.blood_related_parents.include?(gp) && gp.gender.downcase == "male"
+          parents_hash[gp.to_s] = "grandfather"
+        elsif self.blood_related_parents.include?(parent) && parent.blood_related_parents.include?(gp) && gp.gender.downcase == "female"
+          parents_hash[gp.to_s] = "grandmother"
+        elsif gp.gender.downcase == "male"
+          parents_hash[gp.to_s] = "grandfather - not blood-related"
+        elsif gp.gender.downcase == "female"
+          parents_hash[gp.to_s] = "grandfather - not blood-related"
+        end
+      end
+    end
+    parents_hash
+  end
+
+  def all_neices_nephews
+    nn_hash = {}
+    self.parents.each do |parent|
+      parent.children.each do |sib|
+        if sib != self
+          sib.children.each do |nn|
+            if self.blood_related_parents.include?(parent) && sib.blood_related_parents.include?(parent) && nn.blood_related_parents.include?(sib) && gp.gender.downcase == "male"
+              nn_hash[nn.to_s] = "nephew"
+            elsif self.blood_related_parents.include?(parent) && sib.blood_related_parents.include?(parent) && nn.blood_related_parents.include?(sib) && gp.gender.downcase == "female"
+              nn_hash[nn.to_s] = "neice"
+            elsif nn.gender.downcase == "male"
+              nn_hash[nn.to_s] = "nephew - not blood-related"
+            elsif nn.gender.downcase == "female"
+              nn_hash[nn.to_s] = "neice - not blood-related"
+            end
+          end
+        end
+      end
+    end
+    nn_hash
+  end
+
+  def all_aunts_uncles
+    au_hash = {}
+    self.parents.each do |parent|
+      parent.siblings.each do |sib|
+        if self.blood_related_parents.include?(parent) && sib.gender.downcase == "male"
+          au_hash[sib.to_s] = "uncle"
+        elsif self.blood_related_parents.include?(parent) && sib.gender.downcase == "female"
+          au_hash[sib.to_s] = "aunt"
+        elsif sib.gender.downcase == "male"
+          au_hash[sib.to_s] = "uncle - not blood-related"
+        elsif sib.gender.downcase == "female"
+          au_hash[sib.to_s] = "aunt - not blood-related"
+        end
+      end
+    end
+    au_hash
+  end
+
+  def all_cousins
+    cuz_hash = {}
+    self.parents.each do |parent|
+      parent.siblings.each do |au|
+        au.children.each do |cuz|
+          if !parent.all_siblings[au.to_s].include?("step") && self.blood_related_parents.include?(parent) && cuz.blood_related_parents.include?(au)
+            cuz_hash[cuz.to_s] = "cousin"
+          else
+            cuz_hash[cuz.to_s] = "cousin - not blood-related"
+          end
+        end
+      end
+    end
+    cuz_hash
+  end
+
+  def all_family_members
+    fam_hash = {}
+    fam_array = [self.all_cousins, self.all_parents, self.all_siblings, self.all_children, self.all_aunts_uncles, self.all_grandparents, self.all_neices_nephews]
+    fam_array.each do |hash|
+      hash.each do |key, value|
+        fam_hash[key] = value
+      end
+    end
+    fam_hash
   end
 
   def siblings
