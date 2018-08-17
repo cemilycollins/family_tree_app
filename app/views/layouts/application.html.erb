@@ -4,12 +4,19 @@
     <title>FamilyTreeApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-<%= link_to '<button type="button">Sign Out</button>'.html_safe, sign_out_path, method: "delete"%>
-<%= link_to '<button type="button">My User Profile</button>'.html_safe, user_path(@user) %>
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="collapse navbar-collapse">
+      <div class="nav navbar-nav">
+        <%= link_to '<button type="button">Sign Out</button>'.html_safe, sign_out_path, method: "delete"%>
+        <%= link_to '<button type="button">My User Profile</button>'.html_safe, user_path(@user) %>
+      </div>
+    </div>
+  </nav>
+
   <body>
     <%= yield %>
   </body>

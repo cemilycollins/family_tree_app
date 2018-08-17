@@ -1,6 +1,6 @@
 <h1>Edit Relationship for <%= @person.to_s %></h1>
 
-<%= form_for @relationship, url: person_relationships_path(@person) do |f| %>
+<%= form_for @relationship, url: relationship_path(@relationship) do |f| %>
 
   <%= f.label :child_id %><br>
   <%= f.collection_select :child_id, @person.family.people, :id, :to_s %><br>

@@ -45,7 +45,7 @@ class RelationshipsController < ApplicationController
   end
 
   def relationship
-    @relationship = Ethnicity.find(params[:id])
+    @relationship = Relationship.find(params[:id])
   end
 
   def check_authentication
@@ -61,7 +61,7 @@ class RelationshipsController < ApplicationController
       @person = Person.find(params[:person_id])
     elsif params[:id]
       @relationship = Relationship.find(params[:id])
-      @person = @relationship.person
+      @person = @user.person
     end
     if params[:user_id]
       session[:user_id] == params[:user_id].to_i

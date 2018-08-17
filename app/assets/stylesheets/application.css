@@ -12,7 +12,7 @@
  *
   */
 
-// html {
+/* // html {
 //   font-family: Verdana, sans-serif
 //   font-size: 15px
 //   line-height: 1.5
@@ -68,11 +68,28 @@
 //   margin: 4px 2px
 //   cursor: pointer
 //   width: 25%
-// }
+// } */
 
 
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-//= require_tree .
-//= require_self
+body {
+	background: ;
+}
+
+body {
+	background-color: #CCFBF5;
+	font-family: 'Montserrat', sans-serif
+}
+h1,
+h2 {
+	font-weight: bold
+}
+p {
+	font-size: 16px
+}
+
+
+/* //= require_tree .
+//= require_self */

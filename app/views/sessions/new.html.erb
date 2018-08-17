@@ -1,5 +1,14 @@
 <h1>Log in</h1>
+<head>
+  <style>
+  body {
+    background-color: #CCFBF5;
+  }
+  </style>
 
+</head>
+
+<body>
 <%= form_tag :sign_in do %>
   <%= text_field_tag :username, nil, placeholder: 'Username' %>
   <%= text_field_tag :password, nil, placeholder: 'Password' %>
@@ -13,3 +22,5 @@
 
 
 <div><%= link_to "Go To New User Page", new_user_path %></div>
+
+</body>
